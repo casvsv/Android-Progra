@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.progra">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/wolf"
+        android:label="Casv II"
+        android:roundIcon="@drawable/wolf"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.example.progra.vistas.actividades.ActividadArchivo" />
+        <activity android:name="com.example.progra.vistas.actividades.ActividadProductoHelper" />
+        <activity android:name="com.example.progra.vistas.actividades.ActividadArchivosSD" />
+        <activity android:name="com.example.progra.vistas.actividades.ActividadMemoriaPrograma2" />
+        <activity android:name="com.example.progra.vistas.actividades.ActividadMemoriaPrograma" />
+        <activity android:name="com.example.progra.vistas.actividades.ActividadMemoriaInterna" />
+        <activity
+            android:name="com.example.progra.menu_nav"
+            android:label="Casv II"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.progra.vistas.actividades.ActividadRecyclerArtistas" />
+        <activity android:name="com.example.progra.vistas.actividades.ActividadEscucharFragmento" />
+        <activity android:name="com.example.progra.vistas.actividades.ActividadFragmento" />
+        <activity android:name="com.example.progra.vistas.actividades.ActividadRecibirParametros" />
+        <activity android:name="com.example.progra.vistas.actividades.ActividadEnviarParametros" />
+        <activity android:name="com.example.progra.vistas.actividades.ActivitySuma" />
+        <activity android:name="com.example.progra.vistas.actividades.ActivityLogin" />
+        <activity android:name="com.example.progra.MainActivity" />
+    </application>
+
+</manifest>

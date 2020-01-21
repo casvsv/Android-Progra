@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/ItemPrograma"
+        android:icon="@drawable/android"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/ItemMI"
+        android:icon="@drawable/celu"
+        android:title="MI"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/ItemSD"
+        android:icon="@drawable/memoria"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+</menu>
