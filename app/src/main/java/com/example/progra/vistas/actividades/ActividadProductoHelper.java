@@ -24,9 +24,7 @@ public class ActividadProductoHelper extends AppCompatActivity implements View.O
     EditText cajaDescripcion, cajaPrecio, cajaCantidad, cajaCodigo;
     Button botonCrear, botonListar, botonModificar, botonElimianr, botonBuscar, botonEliminarTodo;
     RecyclerView recyclerView;
-    HelperProducto helperProducto;
     List<Producto> listaProducto;
-    BufferedReader lector;
     ProductoAdapter adapter;
 
     @Override
@@ -79,9 +77,9 @@ public class ActividadProductoHelper extends AppCompatActivity implements View.O
             break;
             case R.id.btnListarDB:
                 try {
-                    final HelperProducto conn = new HelperProducto(this,"name",null,1 );
-                    SQLiteDatabase db = conn.getReadableDatabase();
-                    listaProducto = conn.getAll();
+                     HelperProducto helperProducto = new HelperProducto(this,"name",null,1 );
+                    SQLiteDatabase db = helperProducto.getReadableDatabase();
+                    listaProducto = helperProducto.getAll();
                     adapter = new ProductoAdapter(listaProducto);
                     recyclerView.setLayoutManager(new LinearLayoutManager(this));
                     adapter.setOnclickListener(new View.OnClickListener() {
@@ -111,7 +109,6 @@ public class ActividadProductoHelper extends AppCompatActivity implements View.O
                     db.close();
                     limpiar();
                     Toast.makeText(this, "Se ha modificado correctamente", Toast.LENGTH_SHORT).show();
-                    limpiar();
                 }catch (Exception ex){
                     Log.e("error",ex.getMessage());
                 }
@@ -159,13 +156,15 @@ public class ActividadProductoHelper extends AppCompatActivity implements View.O
                 break;
         }
     }
+
+
     private void cargarCajasdeTexto(View view) {
        cajaCodigo.setText(""+listaProducto.get(recyclerView.getChildAdapterPosition(view)).getCodigo());
        cajaDescripcion.setText(""+listaProducto.get(recyclerView.getChildAdapterPosition(view)).getDescripcion());
        cajaPrecio.setText(""+listaProducto.get(recyclerView.getChildAdapterPosition(view)).getPrecio());
        cajaCantidad.setText(""+listaProducto.get(recyclerView.getChildAdapterPosition(view)).getCantidad());
 
-       }
+    }
 
     private void limpiar(){
         cajaCodigo.setText("");

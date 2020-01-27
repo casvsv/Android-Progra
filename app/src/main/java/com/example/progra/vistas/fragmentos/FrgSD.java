@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.progra.R;
 import com.example.progra.modelo.Artista;
@@ -145,8 +146,7 @@ public class FrgSD extends Fragment implements View.OnClickListener{
                     bufferedWriter = new BufferedWriter(fileWriter);
                     bufferedWriter.write(cajaNombres.getText().toString()+","+cajaApellidos.getText().toString()+";");
                     bufferedWriter.close();
-
-                    //OutputStreamWriter escritor = new OutputStreamWriter(new FileOutputStream(file));
+                    limpiar();
                 }catch (Exception ex){
                     Log.e("Error SD", ex.getMessage());
                 }
@@ -179,6 +179,11 @@ public class FrgSD extends Fragment implements View.OnClickListener{
     }
 
 
+    private void limpiar(){
+        datos.setText("");
+        cajaNombres.setText("");
+        cajaApellidos.setText("");
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.progra.vistas.actividades.ActividadCarroORM;
 import com.example.progra.vistas.actividades.ActividadEnviarParametros;
 import com.example.progra.vistas.actividades.ActividadEscucharFragmento;
 import com.example.progra.vistas.actividades.ActividadFragmento;
@@ -114,6 +115,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.opcionRecyclerArtistas:
                 intent = new Intent(MainActivity.this, ActividadRecyclerArtistas.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionORM:
+                intent = new Intent(MainActivity.this, ActividadCarroORM.class);
                 startActivity(intent);
                 break;
         }

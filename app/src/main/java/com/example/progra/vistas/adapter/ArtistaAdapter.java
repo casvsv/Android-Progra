@@ -44,7 +44,7 @@ public class ArtistaAdapter extends RecyclerView.Adapter<ArtistaAdapter.ViewHold
         }
     }
 
-    //es para saber cuantos items va a tener la lista
+    //Es para saber cuantos items va a tener la lista
     @Override
     public int getItemCount() {
         return lista.size();

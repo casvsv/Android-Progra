@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.progra.vistas.actividades.ActividadArchivo;
+import com.example.progra.vistas.actividades.ActividadCarroORM;
 import com.example.progra.vistas.actividades.ActividadEnviarParametros;
 import com.example.progra.vistas.actividades.ActividadEscucharFragmento;
 import com.example.progra.vistas.actividades.ActividadFragmento;
@@ -130,6 +131,10 @@ public class menu_nav extends AppCompatActivity {
                 break;
             case R.id.opcionHelper:
                 intent = new Intent(menu_nav.this, ActividadProductoHelper.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionORM:
+                intent = new Intent(menu_nav.this, ActividadCarroORM.class);
                 startActivity(intent);
                 break;
         }

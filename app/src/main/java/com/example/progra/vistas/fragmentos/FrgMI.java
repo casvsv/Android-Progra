@@ -167,7 +167,7 @@ public class FrgMI extends Fragment implements  View.OnClickListener {
                     Dialog msgGuardar = new Dialog(getContext());
                     msgGuardar.setContentView(R.layout.dlg_msg_guardado);
                     TextView msg = msgGuardar.findViewById(R.id.lblMSGguardado);
-                    msg.setText("Mensaje guardado");
+                    msg.setText("Se ha guardado correctamente");
                     msg.getText();
                     msgGuardar.show();
                     escritor.close();
@@ -175,7 +175,7 @@ public class FrgMI extends Fragment implements  View.OnClickListener {
                     Dialog msgGuardar = new Dialog(getContext());
                     msgGuardar.setContentView(R.layout.dlg_msg_guardado);
                     TextView msg = msgGuardar.findViewById(R.id.lblMSGguardado);
-                    msg.setText("No se pudo guardar el mensaje");
+                    msg.setText("No se pudo guardar");
                     msg.getText();
                     msgGuardar.show();
                     Log.e("archivoMI", "error de escritura" + ex.getMessage());
@@ -235,18 +235,6 @@ public class FrgMI extends Fragment implements  View.OnClickListener {
         startActivityForResult(intent.createChooser(intent, "Seleccione la aplicacion"),10);
     }
 
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -19,6 +19,7 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
     public ProductoAdapter(List<Producto> lista){
         this.lista = lista;
     }
+
     private View.OnClickListener botonClick;
     @NonNull
     @Override
