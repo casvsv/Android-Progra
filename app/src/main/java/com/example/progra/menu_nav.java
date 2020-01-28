@@ -12,6 +12,7 @@ import com.example.progra.vistas.actividades.ActividadFragmento;
 import com.example.progra.vistas.actividades.ActividadMemoriaPrograma2;
 import com.example.progra.vistas.actividades.ActividadProductoHelper;
 import com.example.progra.vistas.actividades.ActividadRecyclerArtistas;
+import com.example.progra.vistas.actividades.ActividadSWAlumno;
 import com.example.progra.vistas.actividades.ActivityLogin;
 import com.example.progra.vistas.actividades.ActivitySuma;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -135,6 +136,10 @@ public class menu_nav extends AppCompatActivity {
                 break;
             case R.id.opcionORM:
                 intent = new Intent(menu_nav.this, ActividadCarroORM.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionSWHilo:
+                intent = new Intent(menu_nav.this, ActividadSWAlumno.class);
                 startActivity(intent);
                 break;
         }

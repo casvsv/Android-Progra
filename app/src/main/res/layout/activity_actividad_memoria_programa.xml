@@ -7,11 +7,43 @@
     android:orientation="vertical"
     tools:context="com.example.progra.vistas.actividades.ActividadMemoriaPrograma">
 
-    <Button
-        android:id="@+id/btnMemoriaPrograma"
+    <TextView
+        android:id="@+id/textView15"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Leer" />
+        android:gravity="center"
+        android:text="Artistas" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="98dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="107dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="159dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnMemoriaPrograma"
+                android:layout_width="157dp"
+                android:layout_height="95dp"
+                android:background="@android:drawable/ic_menu_view"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/lblMemoriaPrograma"

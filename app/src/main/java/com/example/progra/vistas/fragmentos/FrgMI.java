@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.progra.R;
 import com.example.progra.modelo.Artista;
@@ -164,21 +165,12 @@ public class FrgMI extends Fragment implements  View.OnClickListener {
                     artista.setPathFoto(cajaFotoPath.getText().toString());
                     OutputStreamWriter escritor = new OutputStreamWriter(getActivity().openFileOutput("archivo21.txt", Context.MODE_APPEND));
                     escritor.write(artista.getNombres() + "," + artista.getApellidos() + "," + artista.getNombreArtistico() + "," + artista.getPathFoto() + ","+ artista.getImgfoto() +";");
-                    Dialog msgGuardar = new Dialog(getContext());
-                    msgGuardar.setContentView(R.layout.dlg_msg_guardado);
-                    TextView msg = msgGuardar.findViewById(R.id.lblMSGguardado);
-                    msg.setText("Se ha guardado correctamente");
-                    msg.getText();
-                    msgGuardar.show();
                     escritor.close();
+                    Toast.makeText(getActivity(), "Se ha guardado correctamente", Toast.LENGTH_SHORT).show();
+                    limpiar();
                 } catch (Exception ex) {
-                    Dialog msgGuardar = new Dialog(getContext());
-                    msgGuardar.setContentView(R.layout.dlg_msg_guardado);
-                    TextView msg = msgGuardar.findViewById(R.id.lblMSGguardado);
-                    msg.setText("No se pudo guardar");
-                    msg.getText();
-                    msgGuardar.show();
-                    Log.e("archivoMI", "error de escritura" + ex.getMessage());
+                    Toast.makeText(getActivity(), "No se ha podido guardar", Toast.LENGTH_SHORT).show();
+                    limpiar();
                 }
                 break;
             case R.id.btnBuscar:
@@ -248,5 +240,12 @@ public class FrgMI extends Fragment implements  View.OnClickListener {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void limpiar(){
+        cajaNombres.setText("");
+        cajaApellidos.setText("");
+        cajaNombreArtistico.setText("");
+        cajaFotoPath.setText("");
     }
 }

@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context="com.example.progra.vistas.actividades.ActividadProductoHelper">
 
+    <TextView
+        android:id="@+id/textView20"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:text="Productos" />
+
     <EditText
         android:id="@+id/txtCodigoDB"
         android:layout_width="match_parent"
@@ -23,21 +32,27 @@
         android:hint="Ingrese la descripcion"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/txtPrecioDB"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Ingrese el precio"
-        android:inputType="numberDecimal" />
+        android:layout_height="40dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/txtCantidadDB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Ingrese la cantidad"
-        android:inputType="number" />
+        <EditText
+            android:id="@+id/txtPrecioDB"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ingrese el precio"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/txtCantidadDB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ingrese la cantidad"
+            android:inputType="number" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,16 +124,10 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="455dp"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewDB"
-            android:layout_width="348dp"
-            android:layout_height="364dp"
-            android:translationX="30dp" />
-    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDB"
+        android:layout_width="383dp"
+        android:layout_height="452dp"
+        android:translationX="15dp" />
 
 </LinearLayout>

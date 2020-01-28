@@ -7,43 +7,123 @@
     android:orientation="vertical"
     tools:context="com.example.progra.vistas.actividades.ActividadMemoriaInterna">
 
-    <EditText
-        android:id="@+id/txtNombres"
+    <TextView
+        android:id="@+id/textView11"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Ingrese sus nombres"
-        android:inputType="textPersonName" />
+        android:gravity="center"
 
-    <EditText
-        android:id="@+id/txtApellidos"
+        android:text="Artistas" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Ingrese sus apellidos" />
+        android:layout_height="44dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/txtNombreArtistico"
+        <LinearLayout
+            android:layout_width="141dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="68dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nombre:" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/txtNombres"
+                android:layout_width="346dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese sus nombres"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Ingrese su nombre artistico" />
+        android:layout_height="55dp"
+        android:orientation="horizontal">
 
+        <LinearLayout
+            android:layout_width="146dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnCargarImg"
-        android:layout_width="179dp"
-        android:layout_height="wrap_content"
-        android:text="Seleccione Una Imagen" />
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Apellido:" />
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imgFotoSeleccionada"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:translationX="25dp"
-        app:srcCompat="@drawable/ic_menu_camera" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/txtApellidos"
+                android:layout_width="346dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese sus apellidos"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="152dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="74dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nombre Artistico:" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/txtNombreArtistico"
+                android:layout_width="345dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese su nombre artistico"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/lblDatosMI"
@@ -59,19 +139,50 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="77dp"
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnGuardar"
-            android:layout_width="194dp"
-            android:layout_height="wrap_content"
-            android:text="Guardar" />
+            android:id="@+id/btnCargarImg"
+            android:layout_width="179dp"
+            android:layout_height="70dp"
+            android:text="Seleccione Una Imagen" />
 
-        <Button
-            android:id="@+id/btnBuscar"
-            android:layout_width="192dp"
-            android:layout_height="wrap_content"
-            android:text="Buscar" />
+        <ImageView
+            android:id="@+id/imgFotoSeleccionada"
+            android:layout_width="138dp"
+            android:layout_height="70dp"
+            android:translationX="25dp"
+            app:srcCompat="@drawable/ic_menu_camera" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="77dp">
+
+        <LinearLayout
+            android:layout_width="199dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnGuardar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/ic_menu_save" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnBuscar"
+                android:layout_width="165dp"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/ic_menu_view" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -82,8 +193,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecyclerListado"
-            android:layout_width="match_parent"
-            android:layout_height="498dp" />
+            android:layout_width="383dp"
+            android:layout_height="wrap_content"
+            android:translationX="15dp" />
     </LinearLayout>
 
 </LinearLayout>

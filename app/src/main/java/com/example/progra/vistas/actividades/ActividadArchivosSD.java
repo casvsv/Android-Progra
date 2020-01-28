@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.progra.R;
 import com.example.progra.modelo.Artista;
@@ -28,7 +29,7 @@ import java.util.List;
 public class ActividadArchivosSD extends AppCompatActivity implements View.OnClickListener {
 
     TextView datos;
-    EditText cajaNombres, cajaApellidos;
+    EditText cajaNombres, cajaApellidos,cajaNombreArtistico;
     Button botonEscribir, botonLeer;
     RecyclerView reciclerSD;
     ArtistaAdapter adapter;
@@ -43,9 +44,9 @@ public class ActividadArchivosSD extends AppCompatActivity implements View.OnCli
     }
 
     private void cargarComponentes(){
-        datos = findViewById(R.id.lblSD);
         cajaNombres = findViewById(R.id.txtNombresSD);
         cajaApellidos= findViewById(R.id.txtApellidosSD);
+        cajaNombreArtistico=findViewById(R.id.txtNombreArtisticoSD);
         botonEscribir = findViewById(R.id.btnAgregarSD);
         botonLeer = findViewById(R.id.btnListarSD);
         reciclerSD = findViewById(R.id.recyclerViewSD);
@@ -63,11 +64,12 @@ public class ActividadArchivosSD extends AppCompatActivity implements View.OnCli
                 FileWriter fileWriter = null;
                 try {
                     File file = Environment.getExternalStorageDirectory(); // ruta del SD
-                    File ruta = new File(file.getAbsoluteFile(), "archivo1SD.txt");
+                    File ruta = new File(file.getAbsoluteFile(), "archivoSD.txt");
                     fileWriter = new FileWriter(ruta.getAbsoluteFile(), true);
                     bufferedWriter = new BufferedWriter(fileWriter);
-                    bufferedWriter.write(cajaNombres.getText().toString()+","+cajaApellidos.getText().toString()+";");
+                    bufferedWriter.write(cajaNombres.getText().toString()+","+cajaApellidos.getText().toString()+","+cajaNombreArtistico.getText().toString()+";");
                     bufferedWriter.close();
+                    Toast.makeText(this,"Se ha guardado correctamente",Toast.LENGTH_SHORT);
 
                     //OutputStreamWriter escritor = new OutputStreamWriter(new FileOutputStream(file));
                 }catch (Exception ex){
@@ -77,7 +79,7 @@ public class ActividadArchivosSD extends AppCompatActivity implements View.OnCli
             case R.id.btnListarSD:
                 try {
                     File ruta = Environment.getExternalStorageDirectory(); // ruta del SD
-                    File file = new File(ruta.getAbsoluteFile(), "archivo1SD.txt");
+                    File file = new File(ruta.getAbsoluteFile(), "archivoSD.txt");
                     BufferedReader lector = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
                     datos.setText(lector.readLine());
                     adapter = new ArtistaAdapter(listaArtistas);

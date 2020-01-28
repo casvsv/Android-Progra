@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vistas.actividades.ActividadCarroORM">
+    android:orientation="vertical"
+    tools:context=".vistas.actividades.ActividadSWAlumno">
 
     <TextView
         android:id="@+id/textView23"
@@ -14,39 +14,31 @@
         android:layout_height="wrap_content"
         android:gravity="center"
 
-        android:text="Vehículos" />
+        android:text="Alumnos" />
 
     <EditText
-        android:id="@+id/txtPlacaORM"
+        android:id="@+id/txtSWIDAlumno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
-        android:hint="Ingrese la placa"/>
+        android:hint="Ingrese el id"
+        android:inputType="text" />
 
     <EditText
-        android:id="@+id/txtModeloORM"
+        android:id="@+id/txtSWNombreAlumno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
-        android:hint="Ingrese el modelo"/>
+        android:hint="Ingrese el nombre"
+        android:inputType="text" />
 
     <EditText
-        android:id="@+id/txtMarcaORM"
+        android:id="@+id/txtSWDireccionAlumno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
-        android:hint="Ingrese la marca"/>
-
-    <EditText
-        android:id="@+id/txtAnioORM"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="Ingrese el año"/>
+        android:hint="Ingrese la dirección"
+        android:inputType="text" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,72 +46,50 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnCrearDBORM"
+            android:id="@+id/btnSWCrearAlumno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:drawable/ic_menu_save" />
 
         <Button
-            android:id="@+id/btnListarDBORM"
+            android:id="@+id/btnSWListarAlumnos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:drawable/ic_menu_view" />
 
         <Button
-            android:id="@+id/btnModificarDBORM"
+            android:id="@+id/btnSWModificarAlumno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:drawable/ic_menu_edit" />
 
         <Button
-            android:id="@+id/btnEliminarDBORM"
+            android:id="@+id/btnSWEliminarAlumno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:drawable/ic_menu_delete" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnSWBuscarAlumno"
+            android:layout_width="98dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btnBuscarDBORM"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:drawable/ic_search_category_default" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btnEliminarTodoDBORM"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Eliminar Todo" />
-        </LinearLayout>
+            android:background="@android:drawable/ic_search_category_default" />
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/lblSWDatos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerORM"
+        android:id="@+id/recyclerSWAlumnos"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>

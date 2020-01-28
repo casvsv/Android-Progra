@@ -7,26 +7,123 @@
     android:orientation="vertical"
     tools:context="com.example.progra.vistas.actividades.ActividadArchivosSD">
 
-    <EditText
-        android:id="@+id/txtNombresSD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Ingrese sus nombres"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/txtApellidosSD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Ingrese sus apellidos"
-        android:inputType="textPersonName" />
-
     <TextView
-        android:id="@+id/lblSD"
+        android:id="@+id/textView22"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="match_parent"
-        android:layout_height="46dp" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:text="Artistas" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="141dp"
+            android:layout_height="47dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="115dp"
+                android:layout_weight="1"
+                android:text="Nombre:" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/txtNombresSD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese sus nombres"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="146dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Apellido:" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/txtApellidosSD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese sus apellidos"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="152dp"
+            android:layout_height="47dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="74dp"
+                android:layout_height="279dp"
+                android:layout_weight="1"
+                android:text="Nombre Artistico:" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/txtNombreArtisticoSD"
+                android:layout_width="345dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Ingrese su nombre artistico"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,15 +132,15 @@
 
         <Button
             android:id="@+id/btnAgregarSD"
-            android:layout_width="203dp"
-            android:layout_height="wrap_content"
-            android:text="Agregar" />
+            android:layout_width="162dp"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/ic_menu_save" />
 
         <Button
             android:id="@+id/btnListarSD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Listar" />
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/ic_menu_view" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

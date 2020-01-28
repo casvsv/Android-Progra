@@ -4,16 +4,18 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".modelo.config.AplicacionORM"
         android:allowBackup="true"
+        android:background="@drawable/azul"
         android:icon="@drawable/wolf"
         android:label="Casv II"
         android:roundIcon="@drawable/wolf"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".vistas.actividades.ActividadCarroORM"></activity>
+        <activity android:name=".vistas.actividades.ActividadSWAlumno"></activity>
+        <activity android:name=".vistas.actividades.ActividadCarroORM" />
         <activity android:name=".vistas.actividades.ActividadArchivo" />
         <activity android:name=".vistas.actividades.ActividadProductoHelper" />
         <activity android:name=".vistas.actividades.ActividadArchivosSD" />
@@ -38,20 +40,22 @@
         <activity android:name=".vistas.actividades.ActivitySuma" />
         <activity android:name=".vistas.actividades.ActivityLogin" />
         <activity android:name=".MainActivity" />
+
         <meta-data
             android:name="AA_DB_NAME"
-            android:value="movil5a"/>
+            android:value="movil5a" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="1"/>
+            android:value="1" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="com.example.progra.modelo.Carro"/>
+            android:value="com.example.progra.modelo.Carro" />
+
         <provider
             android:name="com.activeandroid.content.ContentProvider"
             android:authorities="com.example.progra"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -41,8 +41,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class FrgSD extends Fragment implements View.OnClickListener{
-    TextView datos;
-    EditText cajaNombres, cajaApellidos;
+    EditText cajaNombres, cajaApellidos,cajaNombreArtistico;
     Button botonEscribir, botonLeer;
     RecyclerView reciclerSD;
     ArtistaAdapter adapter;
@@ -123,9 +122,9 @@ public class FrgSD extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        datos = (TextView)getActivity().findViewById(R.id.lblSD);
         cajaNombres = (EditText) getActivity().findViewById(R.id.txtNombresSD);
         cajaApellidos= (EditText) getActivity().findViewById(R.id.txtApellidosSD);
+        cajaNombreArtistico=getActivity().findViewById(R.id.txtNombreArtisticoSD);
         botonEscribir = (Button) getActivity().findViewById(R.id.btnAgregarSD);
         botonLeer = (Button) getActivity().findViewById(R.id.btnListarSD);
         reciclerSD = (RecyclerView) getActivity().findViewById(R.id.recyclerViewSD);
@@ -141,11 +140,12 @@ public class FrgSD extends Fragment implements View.OnClickListener{
                 FileWriter fileWriter = null;
                 try {
                     File file = Environment.getExternalStorageDirectory(); // ruta del SD
-                    File ruta = new File(file.getAbsoluteFile(), "archivo2SD.txt");
+                    File ruta = new File(file.getAbsoluteFile(), "archivoSD2.txt");
                     fileWriter = new FileWriter(ruta.getAbsoluteFile(), true);
                     bufferedWriter = new BufferedWriter(fileWriter);
-                    bufferedWriter.write(cajaNombres.getText().toString()+","+cajaApellidos.getText().toString()+";");
+                    bufferedWriter.write(cajaNombres.getText().toString()+","+cajaApellidos.getText().toString()+","+cajaNombreArtistico.getText().toString()+";");
                     bufferedWriter.close();
+                    Toast.makeText(getActivity(), "Se ha guardado correctamente", Toast.LENGTH_SHORT).show();
                     limpiar();
                 }catch (Exception ex){
                     Log.e("Error SD", ex.getMessage());
@@ -154,7 +154,7 @@ public class FrgSD extends Fragment implements View.OnClickListener{
             case R.id.btnListarSD:
                 try {
                     File ruta = Environment.getExternalStorageDirectory(); // ruta del SD
-                    File file = new File(ruta.getAbsoluteFile(), "archivo2SD.txt");
+                    File file = new File(ruta.getAbsoluteFile(), "archivoSD2.txt");
                     listaArtistas = new ArrayList<Artista>();
                     BufferedReader lector = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
                     String lineas = lector.readLine();
@@ -165,6 +165,7 @@ public class FrgSD extends Fragment implements View.OnClickListener{
                         Artista artista = new Artista();
                         artista.setNombres(arrayArchivo[0]);
                         artista.setApellidos(arrayArchivo[1]);
+                        artista.setNombreArtistico(arrayArchivo[2]);
                         listaArtistas.add(artista);
                     }
                     adapter = new ArtistaAdapter(listaArtistas);
@@ -180,9 +181,9 @@ public class FrgSD extends Fragment implements View.OnClickListener{
 
 
     private void limpiar(){
-        datos.setText("");
         cajaNombres.setText("");
         cajaApellidos.setText("");
+        cajaNombreArtistico.setText("");
     }
     /**
      * This interface must be implemented by activities that contain this
