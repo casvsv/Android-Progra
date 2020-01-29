@@ -32,7 +32,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.ViewHolder
     //se cargar los datos de la vista
     @Override
     public void onBindViewHolder(ViewHolderAlumno viewHolderAlumno, int pos) {
-        viewHolderAlumno.datoID.setText(lista.get(pos).getIdalumno());
+        viewHolderAlumno.datoID.setText(""+lista.get(pos).getIdalumno());
         viewHolderAlumno.datoNombre.setText(lista.get(pos).getNombre());
         viewHolderAlumno.datoDireccion.setText(lista.get(pos).getDireccion());
     }

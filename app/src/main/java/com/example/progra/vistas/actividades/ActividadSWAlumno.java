@@ -1,13 +1,8 @@
 //Hilo
 package com.example.progra.vistas.actividades;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +10,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.progra.R;
 import com.example.progra.modelo.Alumnos;
 import com.example.progra.vistas.adapter.AlumnoAdapter;
@@ -38,6 +43,7 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
     Button botonGuardar, botonListar, botonModificar, botonEliminar, botonBuscar;
     RecyclerView recyclerAlumnos;
     List<Alumnos> listaAlumnos;
+    RequestQueue mQueue;
     AlumnoAdapter adapter;
     //Se define la URL del servicio
     String host="http://reneguaman.000webhostapp.com";
@@ -55,6 +61,7 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_swalumno);
         cargarComponentes();
+        mQueue = Volley.newRequestQueue(this);
     }
 
     //Construcciòn del Hilo
@@ -86,11 +93,12 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                         InputStream inputStream = new BufferedInputStream(conexion.getInputStream());
                         BufferedReader lector = new BufferedReader(new InputStreamReader(inputStream));
                         consulta+=lector.readLine();
+                        JsonParse(String.valueOf(url));
                     } else{
                         Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
                     }
                 } catch (Exception ex){
-
+                    Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
                 }
             }
 
@@ -99,41 +107,54 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
 
         @Override
         protected void onPostExecute(String s) {
-            datos.setText(s);
-            try {
-                cargarJSONaLIST(s);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            //adapter = new AlumnoAdapter(listaAlumnos);
-            //recyclerAlumnos.setLayoutManager(new LinearLayoutManager(ActividadSWAlumno.this));
-            //adapter.setOnclickListener(new View.OnClickListener() {
-                //@Override
-                //public void onClick(View v) {
-                  //  cargarCajasdeTexto(v);
-                //}
-           // });
-            //recyclerAlumnos.setAdapter(adapter);
+
         }
     }
 
-        private void cargarJSONaLIST(String s) throws JSONException {
-            JSONObject objeto = new JSONObject(s); //Creamos un objeto JSON a partir de la cadena
-            Log.e("asd",objeto.get("alumnos[0]").toString());
-            //listaAlumnos.add(objeto.get("alumnos").);
-            //JSONArray json_array = object.optJSONArray("alumnos"); //cogemos cada uno de los elementos dentro de la etiqueta "alumnos"
-            //for (int i = 0; i < json_array.length(); i++) {
-                //listaAlumnos.add(new Alumnos(json_array.getJSONObject(i))); //creamos un objeto Fruta y lo insertamos en la lista
-            //}
-        }
+        private void JsonParse(String url){
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url,null,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("alumnos");
+                            listaAlumnos=new ArrayList<Alumnos>();
+                            for (int i=0 ; i<jsonArray.length() ; i++){
+                                JSONObject alumnos = jsonArray.getJSONObject(i);
+                                Alumnos alumno = new Alumnos();
+                                alumno.setIdalumno(alumnos.getInt("idalumno"));
+                                alumno.setNombre(alumnos.getString("nombre"));
+                                alumno.setDireccion(alumnos.getString("direccion"));
 
+                                listaAlumnos.add(alumno);
+                                adapter = new AlumnoAdapter(listaAlumnos);
+                                recyclerAlumnos.setLayoutManager(new LinearLayoutManager(ActividadSWAlumno.this));
+                                //adapter.setOnclickListener(new View.OnClickListener() {
+                                    //@Override
+                                    //public void onClick(View v) {
+                                        //cargarCajasdeTexto(v);
+                                    //}
+                                //});
+                                recyclerAlumnos.setAdapter(adapter);
+                            }
+                        } catch (JSONException ex){
+                            Log.e("Error: ",ex.getMessage());
+                        }
+                    }
+                }, new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+            mQueue.add(request);
+    }
 
         private void cargarComponentes(){
         recyclerAlumnos=findViewById(R.id.recyclerSWAlumnos);
         cajaID=findViewById(R.id.txtSWIDAlumno);
         cajaNombre=findViewById(R.id.txtSWNombreAlumno);
         cajaDireccion=findViewById(R.id.txtSWDireccionAlumno);
-        datos=findViewById(R.id.lblSWDatos);
         botonGuardar=findViewById(R.id.btnSWCrearAlumno);
         botonListar=findViewById(R.id.btnSWListarAlumnos);
         botonModificar=findViewById(R.id.btnSWModificarAlumno);
