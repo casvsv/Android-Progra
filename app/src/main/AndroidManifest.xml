@@ -8,7 +8,6 @@
     <application
         android:name=".modelo.config.AplicacionORM"
         android:allowBackup="true"
-        android:background="@drawable/azul"
         android:icon="@drawable/wolf"
         android:label="Casv II"
         android:roundIcon="@drawable/wolf"

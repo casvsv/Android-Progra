@@ -30,8 +30,11 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -77,10 +80,34 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
             if(parametros[1].equals("1")){
                 try{
                     url=new URL(ruta);
+                    //Otra forma de establecer conexion
                     HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
-                    int codigoRespuesta = conexion.getResponseCode();
-                } catch (Exception ex){
+                    conexion.setDoInput(true);
+                    conexion.setDoOutput(true);
+                    conexion.setUseCaches(false);
+                    conexion.connect();
 
+                    //Creacion del json con los parametros a enviar
+                    JSONObject json=new JSONObject();
+                    json.put("nombre",parametros[2]);
+                    json.put("direccion",parametros[3]);
+
+                    OutputStream outputStream = conexion.getOutputStream();
+                    BufferedWriter escritor= new BufferedWriter(new OutputStreamWriter(outputStream));
+                    escritor.write(json.toString());
+                    escritor.flush();
+                    escritor.close();
+
+                    int codigoRespuesta = conexion.getResponseCode();
+                    if(codigoRespuesta==HttpURLConnection.HTTP_OK){
+                        BufferedReader lector = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+                        consulta+=lector.readLine();
+                    } else{
+                        Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
+                    }
+
+                } catch (Exception ex){
+                    Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
                 }
             }
             //Obtener todos los alumnos
@@ -94,6 +121,25 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                         BufferedReader lector = new BufferedReader(new InputStreamReader(inputStream));
                         consulta+=lector.readLine();
                         JsonParse(String.valueOf(url));
+                    } else{
+                        Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
+                    }
+                } catch (Exception ex){
+                    Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
+                }
+            }
+
+            else if (parametros[1].equals("3")){
+                try{
+                    url=new URL(ruta);
+                    Log.e("URL:",url.toString());
+                    JSONObject json;
+                    HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+                    int codigoRespuesta = conexion.getResponseCode();
+                    if(codigoRespuesta==HttpURLConnection.HTTP_OK){
+                        InputStream inputStream = new BufferedInputStream(conexion.getInputStream());
+                        BufferedReader lector = new BufferedReader(new InputStreamReader(inputStream));
+                        consulta+=lector.readLine();
                     } else{
                         Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
                     }
@@ -129,12 +175,12 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                                 listaAlumnos.add(alumno);
                                 adapter = new AlumnoAdapter(listaAlumnos);
                                 recyclerAlumnos.setLayoutManager(new LinearLayoutManager(ActividadSWAlumno.this));
-                                //adapter.setOnclickListener(new View.OnClickListener() {
-                                    //@Override
-                                    //public void onClick(View v) {
-                                        //cargarCajasdeTexto(v);
-                                    //}
-                                //});
+                                adapter.setOnclickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        cargarCajasdeTexto(v);
+                                    }
+                                });
                                 recyclerAlumnos.setAdapter(adapter);
                             }
                         } catch (JSONException ex){
@@ -173,10 +219,15 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
         sw = new ServicioWeb();
         switch (view.getId()){
             case R.id.btnSWCrearAlumno:
-
+                sw.execute(host.concat(insert),"1",cajaNombre.getText().toString(),cajaDireccion.getText().toString());
+                Toast.makeText(this,"Se ha guardado correctamente",Toast.LENGTH_SHORT).show();
+                limpiar();
                 break;
             case R.id.btnSWListarAlumnos:
                 sw.execute(host.concat(getAll),"2");  //Ejecución del hilo en el doINBackGround
+                break;
+            case R.id.btnSWBuscarAlumno:
+                sw.execute(host.concat(getById),"3",cajaID.getText().toString());
                 break;
         }
     }

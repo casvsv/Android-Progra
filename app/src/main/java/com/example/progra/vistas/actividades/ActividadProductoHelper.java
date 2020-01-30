@@ -1,9 +1,5 @@
 package com.example.progra.vistas.actividades;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,12 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.progra.R;
 import com.example.progra.controlador.HelperProducto;
 import com.example.progra.modelo.Producto;
 import com.example.progra.vistas.adapter.ProductoAdapter;
 
-import java.io.BufferedReader;
 import java.util.List;
 
 public class ActividadProductoHelper extends AppCompatActivity implements View.OnClickListener {
@@ -77,7 +77,7 @@ public class ActividadProductoHelper extends AppCompatActivity implements View.O
             break;
             case R.id.btnListarDB:
                 try {
-                     HelperProducto helperProducto = new HelperProducto(this,"name",null,1 );
+                    HelperProducto helperProducto = new HelperProducto(this,"name",null,1 );
                     SQLiteDatabase db = helperProducto.getReadableDatabase();
                     listaProducto = helperProducto.getAll();
                     adapter = new ProductoAdapter(listaProducto);
