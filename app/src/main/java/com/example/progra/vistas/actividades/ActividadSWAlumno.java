@@ -131,15 +131,63 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
 
             else if (parametros[1].equals("3")){
                 try{
+                    ruta+="?idalumno="+parametros[2];
                     url=new URL(ruta);
-                    Log.e("URL:",url.toString());
-                    JSONObject json;
                     HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
                     int codigoRespuesta = conexion.getResponseCode();
                     if(codigoRespuesta==HttpURLConnection.HTTP_OK){
                         InputStream inputStream = new BufferedInputStream(conexion.getInputStream());
                         BufferedReader lector = new BufferedReader(new InputStreamReader(inputStream));
                         consulta+=lector.readLine();
+                        JsonParses(String.valueOf(url));
+                    } else{
+                        Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
+                    }
+                } catch (Exception ex){
+                    Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
+                }
+            }
+
+            else if (parametros[1].equals("4")){
+                try{
+                    ruta+="?idalumno="+parametros[2];
+                    url=new URL(ruta);
+                    HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+                    int codigoRespuesta = conexion.getResponseCode();
+
+                    JSONObject json=new JSONObject();
+                    json.put("nombre",parametros[3]);
+                    json.put("direccion",parametros[4]);
+
+                    OutputStream outputStream = conexion.getOutputStream();
+                    BufferedWriter escritor= new BufferedWriter(new OutputStreamWriter(outputStream));
+                    escritor.write(json.toString());
+                    escritor.flush();
+                    escritor.close();
+                    if(codigoRespuesta==HttpURLConnection.HTTP_OK){
+                        InputStream inputStream = new BufferedInputStream(conexion.getInputStream());
+                        BufferedReader lector = new BufferedReader(new InputStreamReader(inputStream));
+                        consulta+=lector.readLine();
+                        JsonParses(String.valueOf(url));
+                    } else{
+                        Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
+                    }
+                } catch (Exception ex){
+                    Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
+                }
+            }
+
+            else if (parametros[1].equals("5")){
+                try{
+                    ruta+="?idalumno="+parametros[2];
+                    url=new URL(ruta);
+                    HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+                    int codigoRespuesta = conexion.getResponseCode();
+                    if(codigoRespuesta==HttpURLConnection.HTTP_OK){
+                        InputStream inputStream = new BufferedInputStream(conexion.getInputStream());
+                        BufferedReader lector = new BufferedReader(new InputStreamReader(inputStream));
+                        consulta+=lector.readLine();
+                        JsonParses(String.valueOf(url));
                     } else{
                         Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
                     }
@@ -194,6 +242,42 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                     }
                 });
             mQueue.add(request);
+        }
+
+    private void JsonParses(String url){
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url,null,
+                new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject alumnos = response.getJSONObject("alumno");
+                            listaAlumnos=new ArrayList<Alumnos>();
+                                Alumnos alumno = new Alumnos();
+                                alumno.setIdalumno(alumnos.getInt("idAlumno"));
+                                alumno.setNombre(alumnos.getString("nombre"));
+                                alumno.setDireccion(alumnos.getString("direccion"));
+
+                                listaAlumnos.add(alumno);
+                                adapter = new AlumnoAdapter(listaAlumnos);
+                                recyclerAlumnos.setLayoutManager(new LinearLayoutManager(ActividadSWAlumno.this));
+                                adapter.setOnclickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        cargarCajasdeTexto(v);
+                                    }
+                                });
+                                recyclerAlumnos.setAdapter(adapter);
+                            } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        mQueue.add(request);
     }
 
         private void cargarComponentes(){
@@ -225,9 +309,18 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btnSWListarAlumnos:
                 sw.execute(host.concat(getAll),"2");  //Ejecución del hilo en el doINBackGround
+                Toast.makeText(this,"Se han listado correctamente",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnSWBuscarAlumno:
                 sw.execute(host.concat(getById),"3",cajaID.getText().toString());
+                break;
+            case R.id.btnSWModificarAlumno:
+                sw.execute(host.concat(update),"4",cajaID.getText().toString(),cajaNombre.getText().toString(),cajaDireccion.getText().toString());
+                Toast.makeText(this,"Se ha modificado correctamente",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnSWEliminarAlumno:
+                sw.execute(host.concat(delete),"5",cajaID.getText().toString());
+                Toast.makeText(this,"Se ha eliminado correctamente",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
