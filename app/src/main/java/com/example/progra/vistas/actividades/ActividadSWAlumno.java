@@ -107,7 +107,7 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                     }
 
                 } catch (Exception ex){
-                    Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
+                    Log.e("Error",ex.getMessage());
                 }
             }
             //Obtener todos los alumnos
@@ -125,7 +125,7 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                         Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
                     }
                 } catch (Exception ex){
-                    Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
+                    Log.e("Error",ex.getMessage());
                 }
             }
             //Buscar por id
@@ -144,18 +144,23 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                         Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
                     }
                 } catch (Exception ex){
-                    Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
+                    Log.e("Error",ex.getMessage());
                 }
             }
             //Modificar
             else if (parametros[1].equals("4")){
                 try{
-                    ruta+="?idalumno="+parametros[2];
                     url=new URL(ruta);
+                    //Otra forma de establecer conexion
                     HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
-                    int codigoRespuesta = conexion.getResponseCode();
+                    conexion.setDoInput(true);
+                    conexion.setDoOutput(true);
+                    conexion.setUseCaches(false);
+                    conexion.connect();
 
+                    //Creacion del json con los parametros a enviar
                     JSONObject json=new JSONObject();
+                    json.put("idalumno",parametros[2]);
                     json.put("nombre",parametros[3]);
                     json.put("direccion",parametros[4]);
 
@@ -164,23 +169,40 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                     escritor.write(json.toString());
                     escritor.flush();
                     escritor.close();
+
+                    int codigoRespuesta = conexion.getResponseCode();
                     if(codigoRespuesta==HttpURLConnection.HTTP_OK){
-                        InputStream inputStream = new BufferedInputStream(conexion.getInputStream());
-                        BufferedReader lector = new BufferedReader(new InputStreamReader(inputStream));
+                        BufferedReader lector = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
                         consulta+=lector.readLine();
                     } else{
                         Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
                     }
+                    conexion.disconnect();
                 } catch (Exception ex){
-                    Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
+                    Log.e("Error",ex.getMessage());
                 }
             }
             //Eliminar
             else if (parametros[1].equals("5")){
                 try{
-                    ruta+="?idalumno="+parametros[2];
                     url=new URL(ruta);
+                    //Otra forma de establecer conexion
                     HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+                    conexion.setDoInput(true);
+                    conexion.setDoOutput(true);
+                    conexion.setUseCaches(false);
+                    conexion.connect();
+
+                    //Creacion del json con los parametros a enviar
+                    JSONObject json=new JSONObject();
+                    json.put("idalumno",parametros[2]);
+
+                    OutputStream outputStream=conexion.getOutputStream();
+                    BufferedWriter escritor = new BufferedWriter(new OutputStreamWriter(outputStream));
+                    escritor.write(json.toString());
+                    escritor.flush();
+                    escritor.close();
+
                     int codigoRespuesta = conexion.getResponseCode();
                     if(codigoRespuesta==HttpURLConnection.HTTP_OK){
                         InputStream inputStream = new BufferedInputStream(conexion.getInputStream());
@@ -189,8 +211,9 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                     } else{
                         Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
                     }
+                    conexion.disconnect();
                 } catch (Exception ex){
-                    Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
+                    Log.e("Error",ex.getMessage());
                 }
             }
 
@@ -308,17 +331,21 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
             case R.id.btnSWListarAlumnos:
                 sw.execute(host.concat(getAll),"2");  //Ejecución del hilo en el doINBackGround
                 Toast.makeText(this,"Se han listado correctamente",Toast.LENGTH_SHORT).show();
+                limpiar();
                 break;
             case R.id.btnSWBuscarAlumno:
                 sw.execute(host.concat(getById),"3",cajaID.getText().toString());
+                limpiar();
                 break;
             case R.id.btnSWModificarAlumno:
                 sw.execute(host.concat(update),"4",cajaID.getText().toString(),cajaNombre.getText().toString(),cajaDireccion.getText().toString());
                 Toast.makeText(this,"Se ha modificado correctamente",Toast.LENGTH_SHORT).show();
+                limpiar();
                 break;
             case R.id.btnSWEliminarAlumno:
                 sw.execute(host.concat(delete),"5",cajaID.getText().toString());
                 Toast.makeText(this,"Se ha eliminado correctamente",Toast.LENGTH_SHORT).show();
+                limpiar();
                 break;
         }
     }
