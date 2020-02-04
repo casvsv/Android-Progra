@@ -128,7 +128,7 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                     Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
                 }
             }
-
+            //Buscar por id
             else if (parametros[1].equals("3")){
                 try{
                     ruta+="?idalumno="+parametros[2];
@@ -147,7 +147,7 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                     Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
                 }
             }
-
+            //Modificar
             else if (parametros[1].equals("4")){
                 try{
                     ruta+="?idalumno="+parametros[2];
@@ -168,7 +168,6 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                         InputStream inputStream = new BufferedInputStream(conexion.getInputStream());
                         BufferedReader lector = new BufferedReader(new InputStreamReader(inputStream));
                         consulta+=lector.readLine();
-                        JsonParses(String.valueOf(url));
                     } else{
                         Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
                     }
@@ -176,7 +175,7 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                     Toast.makeText(ActividadSWAlumno.this,"Ha habido un error", Toast.LENGTH_SHORT);
                 }
             }
-
+            //Eliminar
             else if (parametros[1].equals("5")){
                 try{
                     ruta+="?idalumno="+parametros[2];
@@ -187,7 +186,6 @@ public class ActividadSWAlumno extends AppCompatActivity implements View.OnClick
                         InputStream inputStream = new BufferedInputStream(conexion.getInputStream());
                         BufferedReader lector = new BufferedReader(new InputStreamReader(inputStream));
                         consulta+=lector.readLine();
-                        JsonParses(String.valueOf(url));
                     } else{
                         Toast.makeText(ActividadSWAlumno.this,"Revise su conexión a internet", Toast.LENGTH_SHORT);
                     }
