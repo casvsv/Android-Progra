@@ -3,6 +3,21 @@ package com.example.progra;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.example.progra.vistas.actividades.ActividadArchivo;
 import com.example.progra.vistas.actividades.ActividadCarroORM;
@@ -13,31 +28,13 @@ import com.example.progra.vistas.actividades.ActividadMemoriaPrograma2;
 import com.example.progra.vistas.actividades.ActividadProductoHelper;
 import com.example.progra.vistas.actividades.ActividadRecyclerArtistas;
 import com.example.progra.vistas.actividades.ActividadSWAlumno;
+import com.example.progra.vistas.actividades.ActividadSWClima;
+import com.example.progra.vistas.actividades.ActividadSWVolly;
 import com.example.progra.vistas.actividades.ActivityLogin;
 import com.example.progra.vistas.actividades.ActivitySuma;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.MenuItem;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.material.navigation.NavigationView;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.Menu;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import com.google.android.material.snackbar.Snackbar;
 
 public class menu_nav extends AppCompatActivity {
 
@@ -140,6 +137,14 @@ public class menu_nav extends AppCompatActivity {
                 break;
             case R.id.opcionSWHilo:
                 intent = new Intent(menu_nav.this, ActividadSWAlumno.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionSWClima:
+                intent = new Intent(menu_nav.this, ActividadSWClima.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionSWVolly:
+                intent = new Intent(menu_nav.this, ActividadSWVolly.class);
                 startActivity(intent);
                 break;
         }

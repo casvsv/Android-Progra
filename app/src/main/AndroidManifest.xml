@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".modelo.config.AplicacionORM"
         android:allowBackup="true"
@@ -13,7 +14,9 @@
         android:roundIcon="@drawable/wolf"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".vistas.actividades.ActividadSWAlumno"></activity>
+        <activity android:name=".vistas.actividades.ActividadSWVolly"></activity>
+        <activity android:name=".vistas.actividades.ActividadSWClima" />
+        <activity android:name=".vistas.actividades.ActividadSWAlumno" />
         <activity android:name=".vistas.actividades.ActividadCarroORM" />
         <activity android:name=".vistas.actividades.ActividadArchivo" />
         <activity android:name=".vistas.actividades.ActividadProductoHelper" />

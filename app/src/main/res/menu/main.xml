@@ -73,6 +73,10 @@
                 android:title="Hilo">
             </item>
             <item
+                android:id="@+id/opcionSWClima"
+                android:title="Clima">
+            </item>
+            <item
                 android:id="@+id/opcionSWVolly"
                 android:title="Volly">
             </item>

@@ -1,8 +1,5 @@
 package com.example.progra.modelo;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class Alumnos {
     private int idalumno;
     private String nombre;
@@ -18,11 +15,6 @@ public class Alumnos {
         this.direccion = direccion;
     }
 
-    public Alumnos(JSONObject objetoJSON) throws JSONException {
-        idalumno = objetoJSON.getInt("idalumno");
-        nombre = objetoJSON.getString("nombre");
-        direccion = objetoJSON.getString("direccion");
-    }
 
     public int getIdalumno() {
         return idalumno;
