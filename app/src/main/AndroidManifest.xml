@@ -14,7 +14,9 @@
         android:roundIcon="@drawable/wolf"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".vistas.actividades.ActividadSWVolly"></activity>
+        <activity android:name=".vistas.actividades.ActividadVollyUsuario"></activity>
+        <activity android:name=".vistas.actividades.ActividadHiloUsuario" />
+        <activity android:name=".vistas.actividades.ActividadSWVolly" />
         <activity android:name=".vistas.actividades.ActividadSWClima" />
         <activity android:name=".vistas.actividades.ActividadSWAlumno" />
         <activity android:name=".vistas.actividades.ActividadCarroORM" />

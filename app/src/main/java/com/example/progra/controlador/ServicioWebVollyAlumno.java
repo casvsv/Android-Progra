@@ -8,7 +8,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.example.progra.modelo.Alumnos;
 
 import org.json.JSONObject;
@@ -23,8 +22,6 @@ public class ServicioWebVollyAlumno {
     String update="/actualizar_alumno.php";
     String delete="/borrar_alumno.php";
 
-    String consulta;
-    Boolean estado;
     public ServicioWebVollyAlumno(Context context) {
         this.context = context;
     }
@@ -53,33 +50,28 @@ public class ServicioWebVollyAlumno {
         AlumnoSingletonVolly.getInstance(context).addToRequestqueue(request);
     }
 
-    public String ObtenerTodos(){
+    public void ObtenerTodos(final volleyResponseListener listener){
         String path=host.concat(getAll);
-        final StringRequest request = new StringRequest(Request.Method.GET, path, new Response.Listener<String>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, path, null,new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
-                Toast.makeText(context, response, Toast.LENGTH_LONG).show();
-                consulta = response;
+            public void onResponse(JSONObject response) {
+                    listener.onResponse(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Error:","Ha habido un error");
+                Log.e("Error:",error.getMessage());
             }
         });
         AlumnoSingletonVolly.getInstance(context).addToRequestqueue(request);
-        return consulta;
     }
 
-    public String BuscarporID(String id){
+    public void BuscarporID(String id, final volleyResponseListener listener){
         String path=host.concat(getById).concat("?idalumno=").concat(id);
-        StringRequest request = new StringRequest(Request.Method.GET, path, new Response.Listener<String>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, path, null,new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
-
-                Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-                consulta = response;
-
+            public void onResponse(JSONObject response) {
+                listener.onResponse(response);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -90,7 +82,6 @@ public class ServicioWebVollyAlumno {
 
 
         AlumnoSingletonVolly.getInstance(context).addToRequestqueue(request);
-        return consulta;
     }
 
     public void Eliminar(String id){
@@ -137,5 +128,11 @@ public class ServicioWebVollyAlumno {
             }
         });
         AlumnoSingletonVolly.getInstance(context).addToRequestqueue(request);
+    }
+
+    public interface volleyResponseListener{
+        void onError(String message);
+
+        void onResponse(JSONObject response);
     }
 }

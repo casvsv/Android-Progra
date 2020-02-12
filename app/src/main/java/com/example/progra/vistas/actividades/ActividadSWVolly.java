@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.progra.R;
@@ -14,6 +15,11 @@ import com.example.progra.controlador.ServicioWebVollyAlumno;
 import com.example.progra.modelo.Alumnos;
 import com.example.progra.vistas.adapter.AlumnoAdapter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActividadSWVolly extends AppCompatActivity implements View.OnClickListener{
@@ -79,7 +85,21 @@ public class ActividadSWVolly extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.btnSWVollyListarAlumnos:
                 try {
-                    String consulta=sw.ObtenerTodos();
+                    sw.ObtenerTodos(new ServicioWebVollyAlumno.volleyResponseListener() {
+                        @Override
+                        public void onError(String message) {
+
+                        }
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JsonParse(response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                     limpiar();
                 } catch (Exception e){
                     Log.e("Error:",e.getMessage());
@@ -87,7 +107,21 @@ public class ActividadSWVolly extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.btnSWVollyBuscarAlumno:
                 try {
-                    String consulta=sw.BuscarporID(cajaID.getText().toString());
+                    sw.BuscarporID(cajaID.getText().toString(), new ServicioWebVollyAlumno.volleyResponseListener() {
+                        @Override
+                        public void onError(String message) {
+
+                        }
+
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JsonParses(response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                     limpiar();
                 } catch (Exception e){
                     Log.e("Error:",e.getMessage());
@@ -114,5 +148,48 @@ public class ActividadSWVolly extends AppCompatActivity implements View.OnClickL
                 }
                 break;
         }
+    }
+
+    private void JsonParse(JSONObject jsonObject) throws JSONException {
+        JSONArray jsonArray = jsonObject.getJSONArray("alumnos");
+        listaAlumnos=new ArrayList<Alumnos>();
+        for (int i=0 ; i<jsonArray.length() ; i++){
+            JSONObject alumnos = jsonArray.getJSONObject(i);
+            Alumnos alumno = new Alumnos();
+            alumno.setIdalumno(alumnos.getInt("idalumno"));
+            alumno.setNombre(alumnos.getString("nombre"));
+            alumno.setDireccion(alumnos.getString("direccion"));
+
+            listaAlumnos.add(alumno);
+            adapter = new AlumnoAdapter(listaAlumnos);
+            recyclerAlumnos.setLayoutManager(new LinearLayoutManager(ActividadSWVolly.this));
+            adapter.setOnclickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cargarCajasdeTexto(v);
+                }
+            });
+            recyclerAlumnos.setAdapter(adapter);
+        }
+    }
+
+    private void JsonParses(JSONObject jsonObject) throws JSONException {
+        JSONObject alumnos = jsonObject.getJSONObject("alumno");
+        listaAlumnos=new ArrayList<Alumnos>();
+        Alumnos alumno = new Alumnos();
+        alumno.setIdalumno(alumnos.getInt("idAlumno"));
+        alumno.setNombre(alumnos.getString("nombre"));
+        alumno.setDireccion(alumnos.getString("direccion"));
+
+        listaAlumnos.add(alumno);
+        adapter = new AlumnoAdapter(listaAlumnos);
+        recyclerAlumnos.setLayoutManager(new LinearLayoutManager(ActividadSWVolly.this));
+        adapter.setOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cargarCajasdeTexto(v);
+            }
+        });
+        recyclerAlumnos.setAdapter(adapter);
     }
 }

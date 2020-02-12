@@ -24,12 +24,14 @@ import com.example.progra.vistas.actividades.ActividadCarroORM;
 import com.example.progra.vistas.actividades.ActividadEnviarParametros;
 import com.example.progra.vistas.actividades.ActividadEscucharFragmento;
 import com.example.progra.vistas.actividades.ActividadFragmento;
+import com.example.progra.vistas.actividades.ActividadHiloUsuario;
 import com.example.progra.vistas.actividades.ActividadMemoriaPrograma2;
 import com.example.progra.vistas.actividades.ActividadProductoHelper;
 import com.example.progra.vistas.actividades.ActividadRecyclerArtistas;
 import com.example.progra.vistas.actividades.ActividadSWAlumno;
 import com.example.progra.vistas.actividades.ActividadSWClima;
 import com.example.progra.vistas.actividades.ActividadSWVolly;
+import com.example.progra.vistas.actividades.ActividadVollyUsuario;
 import com.example.progra.vistas.actividades.ActivityLogin;
 import com.example.progra.vistas.actividades.ActivitySuma;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -145,6 +147,14 @@ public class menu_nav extends AppCompatActivity {
                 break;
             case R.id.opcionSWVolly:
                 intent = new Intent(menu_nav.this, ActividadSWVolly.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionUsuarioHilo:
+                intent = new Intent(menu_nav.this, ActividadHiloUsuario.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionUsuarioVolly:
+                intent = new Intent(menu_nav.this, ActividadVollyUsuario.class);
                 startActivity(intent);
                 break;
         }

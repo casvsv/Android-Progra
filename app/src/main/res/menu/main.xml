@@ -80,6 +80,14 @@
                 android:id="@+id/opcionSWVolly"
                 android:title="Volly">
             </item>
+            <item
+                android:id="@+id/opcionUsuarioHilo"
+                android:title="Usuario Hilo">
+            </item>
+            <item
+                android:id="@+id/opcionUsuarioVolly"
+                android:title="Usuario Volly">
+            </item>
         </menu>
     </item>
     <item
