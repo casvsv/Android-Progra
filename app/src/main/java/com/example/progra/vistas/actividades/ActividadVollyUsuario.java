@@ -21,7 +21,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ActividadVollyUsuario extends AppCompatActivity implements View.OnClickListener{
     EditText cajaDocumento,cajaNombre,cajaProfesion;
@@ -62,11 +64,11 @@ public class ActividadVollyUsuario extends AppCompatActivity implements View.OnC
         switch (v.getId()){
             case R.id.btnCrearUsuarioVolly:
                 try {
-                    Usuario usuario=new Usuario();
-                    usuario.setDocumento(Integer.parseInt(cajaDocumento.getText().toString()));
-                    usuario.setNombre(cajaNombre.getText().toString());
-                    usuario.setProfesion(cajaProfesion.getText().toString());
-                    sw.Insertar(usuario);
+                    final Map<String, String> parametros = new HashMap<>();
+                    parametros.put("documento",cajaDocumento.getText().toString());
+                    parametros.put("nombre",cajaNombre.getText().toString());
+                    parametros.put("profesion",cajaProfesion.getText().toString());
+                    sw.Insertar(parametros);
                     limpiar();
                 } catch (Exception e){
                     Log.e("Error:",e.getMessage());
@@ -98,11 +100,11 @@ public class ActividadVollyUsuario extends AppCompatActivity implements View.OnC
 
             case R.id.btnModificarUsuarioVolly:
                 try {
-                    Usuario usuario= new Usuario();
-                    usuario.setDocumento(Integer.parseInt(cajaDocumento.getText().toString()));
-                    usuario.setNombre(cajaNombre.getText().toString());
-                    usuario.setProfesion(cajaProfesion.getText().toString());
-                    sw.Modificar(usuario);
+                    final Map<String, String> parametros = new HashMap<>();
+                    parametros.put("documento",cajaDocumento.getText().toString());
+                    parametros.put("nombre",cajaNombre.getText().toString());
+                    parametros.put("profesion",cajaProfesion.getText().toString());
+                    sw.Modificar(parametros);
                     limpiar();
                 } catch (Exception e){
                     Log.e("Error:",e.getMessage());

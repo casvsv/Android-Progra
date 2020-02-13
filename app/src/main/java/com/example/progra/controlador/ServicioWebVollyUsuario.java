@@ -8,9 +8,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.progra.modelo.Usuario;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONObject;
+
+import java.util.Map;
 
 public class ServicioWebVollyUsuario {
     Context context;
@@ -18,7 +20,7 @@ public class ServicioWebVollyUsuario {
     //Se define la URL del servicio
     String host="http://192.168.1.8/Salazar";
     String getAll="/wsJSONConsultarLista.php";
-    String insert="/wsJSONRegistro.php";
+    String insert="/wsJSONRegistroMovil.php";
     String update="/wsJSONUpdateMovil.php";
     String getById="/wsJSONConsultarUsuario.php";
     String delete="/wsJSONDeleteMovil.php";
@@ -44,21 +46,26 @@ public class ServicioWebVollyUsuario {
         UsuarioSingletonVolly.getInstance(context).addToRequestqueue(request);
     }
 
-    public  void Insertar(Usuario usuario){
-        String datos="?documento="+usuario.getDocumento()+"&nombre="+usuario.getNombre()+"&profesion="+usuario.getProfesion();
-        String path=host.concat(insert).concat(datos);
-        Log.e("ASD:",path);
-        JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET,path,null,new Response.Listener<JSONObject>(){
+    public  void Insertar(final Map<String,String> params){
+        String path=host.concat(insert);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, path, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
-                Toast.makeText(context, "Se ha guardado el usuario correctamente", Toast.LENGTH_SHORT).show();
+            public void onResponse(String response) {
+                Toast.makeText(context, "Se ha creado correctamente", Toast.LENGTH_SHORT).show();
             }
-        }, new Response.ErrorListener(){
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
             }
-        });
-        UsuarioSingletonVolly.getInstance(context).addToRequestqueue(request);
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                return params;
+            }
+        };
+        UsuarioSingletonVolly.getInstance(context).addToRequestqueue(stringRequest);
     }
 
     public void BuscarporID(String id, final volleyResponseListener listener){
@@ -99,31 +106,28 @@ public class ServicioWebVollyUsuario {
         UsuarioSingletonVolly.getInstance(context).addToRequestqueue(request);
     }
 
-    public void Modificar(Usuario usuario){
-        String path=host.concat(update).concat("?documento=").concat(usuario.getDocumento()+"");
-        Log.e("Error",path);
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("documento",usuario.getDocumento());
-            jsonObject.put("nombre",usuario.getNombre());
-            jsonObject.put("profesion",usuario.getProfesion());
-            jsonObject.put("imagen",null);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, path, jsonObject, new Response.Listener<JSONObject>() {
+    public void Modificar(final Map<String,String> params){
+        String path=host.concat(update);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, path, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
                 Toast.makeText(context, "Se ha modificado correctamente", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Error:","Ha habido un error");
+
             }
-        });
-        UsuarioSingletonVolly.getInstance(context).addToRequestqueue(request);
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                return params;
+            }
+        };
+        UsuarioSingletonVolly.getInstance(context).addToRequestqueue(stringRequest);
     }
+
 
     public interface volleyResponseListener{
         void onError(String message);
