@@ -25,6 +25,7 @@ import com.example.progra.vistas.actividades.ActividadEnviarParametros;
 import com.example.progra.vistas.actividades.ActividadEscucharFragmento;
 import com.example.progra.vistas.actividades.ActividadFragmento;
 import com.example.progra.vistas.actividades.ActividadHiloUsuario;
+import com.example.progra.vistas.actividades.ActividadMapas;
 import com.example.progra.vistas.actividades.ActividadMemoriaPrograma2;
 import com.example.progra.vistas.actividades.ActividadProductoHelper;
 import com.example.progra.vistas.actividades.ActividadRecyclerArtistas;
@@ -155,6 +156,10 @@ public class menu_nav extends AppCompatActivity {
                 break;
             case R.id.opcionUsuarioVolly:
                 intent = new Intent(menu_nav.this, ActividadVollyUsuario.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionMapas:
+                intent = new Intent(menu_nav.this, ActividadMapas.class);
                 startActivity(intent);
                 break;
         }

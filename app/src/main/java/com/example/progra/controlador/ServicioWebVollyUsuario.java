@@ -48,24 +48,18 @@ public class ServicioWebVollyUsuario {
 
     public  void Insertar(final Map<String,String> params){
         String path=host.concat(insert);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, path, new Response.Listener<String>() {
+        Log.e("ASD:",path);
+        JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET,path,null,new Response.Listener<JSONObject>(){
             @Override
-            public void onResponse(String response) {
-                Toast.makeText(context, "Se ha creado correctamente", Toast.LENGTH_SHORT).show();
+            public void onResponse(JSONObject response) {
+                Toast.makeText(context, "Se ha guardado el usuario correctamente", Toast.LENGTH_SHORT).show();
             }
-        }, new Response.ErrorListener() {
+        }, new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error) {
-
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                return params;
-            }
-        };
-        UsuarioSingletonVolly.getInstance(context).addToRequestqueue(stringRequest);
+        });
+        UsuarioSingletonVolly.getInstance(context).addToRequestqueue(request);
     }
 
     public void BuscarporID(String id, final volleyResponseListener listener){
