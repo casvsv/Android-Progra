@@ -1,0 +1,5 @@
+-4.033393,-79.205809,Mi casa,Inicio de la ruta,house;
+-4.032259,-79.202553,Restaurante Sonora Matancera,Marisqueria,crab;
+-4.032724,-79.202218,Redondel de la UNL,Monumento a Pío Jaramillo,museum;
+-4.032727,-79.200187,Parada de bus,Bus Rojo destino "La Pradera",bus;
+-4.030196,-79.199423,UNL, Fin de la ruta,school;

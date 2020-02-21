@@ -1,6 +1,7 @@
 package com.example.progra.vistas.actividades;
 
-import android.graphics.Color;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,20 +9,28 @@ import android.widget.Button;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.progra.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
+import com.example.progra.controlador.ControladorMapas;
+import com.example.progra.modelo.Ruta;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polygon;
-import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActividadMapas extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
+    ControladorMapas cM;
     private Button botonSatelite,botonTerreno,botonHibrido;
     private GoogleMap mMap;
-
+    List<Ruta> listaRutas=new ArrayList<>();
+    List<LatLng> puntos=new ArrayList<>();
+    Ruta ruta= new Ruta();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,42 +62,31 @@ public class ActividadMapas extends FragmentActivity implements OnMapReadyCallba
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        cM=new ControladorMapas(this);
         mMap = googleMap;
+        listaRutas=cM.obtenerRutas();
 
-        // Add a marker in UNL
-        LatLng UNL = new LatLng(-4.030283, -79.199477);
-        LatLng Casa = new LatLng(-4.033393, -79.205809);
-        LatLng Direccion2 = new LatLng(-4.034894, -79.205294);
+        // Add a marker
+        for (Ruta rut:listaRutas) {
+            mMap.addMarker(new MarkerOptions().position(new LatLng(rut.getLat(),rut.getLng())).title(rut.getTitulo()).snippet(rut.getDescripcion()).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(rut.getIcono()))));
+            puntos.add(new LatLng(rut.getLat(),rut.getLng()));
+        }
 
-        LatLngBounds CASA = new LatLngBounds(
-                Casa,UNL);
 
-        mMap.addMarker(new MarkerOptions().position(UNL).title("UNL"));
-        mMap.addMarker(new MarkerOptions().position(Casa).title("Mi Casa"));
-        mMap.addMarker(new MarkerOptions().position(Direccion2).title("Direccion2"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(Casa));
-        mMap.setBuildingsEnabled(true);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(CASA, 0));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CASA.getCenter(), 15));
-        /*Polyline line = mMap.addPolyline(new PolylineOptions()
-               .add(Casa,Direccion2,UNL)
-               .width(5)
-               .color(Color.BLUE));
-        */
+        LatLngBounds ZOOM = cM.Zoom(puntos,mMap);
 
-        Polygon polygon = mMap.addPolygon(new PolygonOptions()
-                .add(UNL,Casa,Direccion2)
-                .strokeColor(Color.BLACK)
-                .fillColor(Color.GREEN));
+        Circle circleInicio = cM.trazarCirculo(puntos.get(0),mMap);
 
-        /*
-        Circle circle = mMap.addCircle(new CircleOptions()
-                .center(Casa)
-                .radius(1000)
-                .strokeColor(Color.RED)
-                .fillColor(Color.BLACK));
-        */
+        Circle circleFin = cM.trazarCirculo(puntos.get(puntos.size()-1),mMap);
+
+        Polyline line = cM.trazarPolinea(puntos,mMap);
     }
+
+    public Bitmap resizeMapIcons(String iconName){
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
+        return imageBitmap;
+    }
+
 
     @Override
     public void onClick(View v) {
