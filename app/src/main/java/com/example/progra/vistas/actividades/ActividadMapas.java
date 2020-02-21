@@ -68,7 +68,7 @@ public class ActividadMapas extends FragmentActivity implements OnMapReadyCallba
 
         // Add a marker
         for (Ruta rut:listaRutas) {
-            mMap.addMarker(new MarkerOptions().position(new LatLng(rut.getLat(),rut.getLng())).title(rut.getTitulo()).snippet(rut.getDescripcion()).icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(rut.getIcono()))));
+            mMap.addMarker(new MarkerOptions().position(new LatLng(rut.getLat(),rut.getLng())).title(rut.getTitulo()).snippet(rut.getDescripcion()).icon(BitmapDescriptorFactory.fromBitmap(obtenerIconos(rut.getIcono()))));
             puntos.add(new LatLng(rut.getLat(),rut.getLng()));
         }
 
@@ -82,7 +82,7 @@ public class ActividadMapas extends FragmentActivity implements OnMapReadyCallba
         Polyline line = cM.trazarPolinea(puntos,mMap);
     }
 
-    public Bitmap resizeMapIcons(String iconName){
+    public Bitmap obtenerIconos(String iconName){
         Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(iconName, "drawable", getPackageName()));
         return imageBitmap;
     }
