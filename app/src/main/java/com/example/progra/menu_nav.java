@@ -32,6 +32,9 @@ import com.example.progra.vistas.actividades.ActividadRecyclerArtistas;
 import com.example.progra.vistas.actividades.ActividadSWAlumno;
 import com.example.progra.vistas.actividades.ActividadSWClima;
 import com.example.progra.vistas.actividades.ActividadSWVolly;
+import com.example.progra.vistas.actividades.ActividadSensorAcelerometro;
+import com.example.progra.vistas.actividades.ActividadSensorLuz;
+import com.example.progra.vistas.actividades.ActividadSensorProximidad;
 import com.example.progra.vistas.actividades.ActividadVollyUsuario;
 import com.example.progra.vistas.actividades.ActivityLogin;
 import com.example.progra.vistas.actividades.ActivitySuma;
@@ -160,6 +163,18 @@ public class menu_nav extends AppCompatActivity {
                 break;
             case R.id.opcionMapas:
                 intent = new Intent(menu_nav.this, ActividadMapas.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionAcelerometro:
+                intent = new Intent(menu_nav.this, ActividadSensorAcelerometro.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionProximidad:
+                intent = new Intent(menu_nav.this, ActividadSensorProximidad.class);
+                startActivity(intent);
+                break;
+            case R.id.opcionLuz:
+                intent = new Intent(menu_nav.this, ActividadSensorLuz.class);
                 startActivity(intent);
                 break;
         }
