@@ -1,5 +1,5 @@
--4.033393,-79.205809,Mi casa,Inicio de la ruta,house;
--4.032259,-79.202553,Restaurante Sonora Matancera,Marisqueria,crab;
--4.032724,-79.202218,Redondel de la UNL,Monumento a Pío Jaramillo,museum;
--4.032727,-79.200187,Parada de bus,Bus Rojo destino "La Pradera",bus;
--4.030196,-79.199423,UNL, Fin de la ruta,school;
+-4.033393,-79.205809,Mi casa,Inicio de la ruta,house,Aquí comienza toda la travesía desde mi casa hasta la U,fotocasa;
+-4.032259,-79.202553,Restaurante Sonora Matancera,Marisqueria,crab, Restaurante de comida maritima cuya especialidad son los mariscos,fotorestaurant;
+-4.032724,-79.202218,Redondel de la UNL,Monumento a Pío Jaramillo,museum, Monumento erigido a quien en vida fue Pío Jaramillo Alvarado,fotomonumento;
+-4.032727,-79.200187,Parada de bus,Bus Rojo destino "La Pradera",bus, Las rutas que el bus en esta parada sigue es: La Pradera-Centro-Parque Jipiro,fotoparada;
+-4.030196,-79.199423,UNL, Fin de la ruta,school, Institución de Educación Superior laica autónoma de derecho público con personería jurídica y sin fines de lucro,fotounl;

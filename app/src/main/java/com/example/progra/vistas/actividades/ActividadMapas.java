@@ -1,10 +1,13 @@
 package com.example.progra.vistas.actividades;
 
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -18,6 +21,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 
@@ -72,6 +76,26 @@ public class ActividadMapas extends FragmentActivity implements OnMapReadyCallba
             puntos.add(new LatLng(rut.getLat(),rut.getLng()));
         }
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Dialog dlgDetallesMapa = new Dialog(ActividadMapas.this);
+                dlgDetallesMapa.setContentView(R.layout.dlg_descripcion_mapas);
+                TextView titulo = dlgDetallesMapa.findViewById(R.id.lblDlgTituloMapa);
+                TextView descripcion = dlgDetallesMapa.findViewById(R.id.lblDlgDescripcionMapa);
+                ImageView imagen= dlgDetallesMapa.findViewById(R.id.imgDlgMapa);
+                for (Ruta rut:listaRutas) {
+                    if(marker.getTitle().equals(rut.getTitulo())){
+                        titulo.setText(rut.getTitulo());
+                        descripcion.setText(rut.getInformacion());
+                        int id = getResources().getIdentifier(rut.getImagenLugar(), "drawable", getPackageName());
+                        imagen.setImageResource(id);
+                    }
+                }
+                dlgDetallesMapa.show();
+                return true;
+            }
+        });
 
         LatLngBounds ZOOM = cM.Zoom(puntos,mMap);
 
@@ -104,4 +128,6 @@ public class ActividadMapas extends FragmentActivity implements OnMapReadyCallba
                 break;
         }
     }
+
+
 }

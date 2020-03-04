@@ -11,16 +11,16 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_gallery">Galeria</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_tools">Herramientas</string>
+    <string name="menu_share">Compartir</string>
+    <string name="menu_send">Enviar</string>
     <string name="title_activity_menu_nav">menu_nav</string>
     <string name="title_activity_actividad_pruebas">ActividadPruebas</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_actividad_tabbed">ActividadTabbed</string>
-    <string name="title_activity_actividad_mapas">Map</string>
+    <string name="title_activity_actividad_mapas">Mapas</string>
 </resources>

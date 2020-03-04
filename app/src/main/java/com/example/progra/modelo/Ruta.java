@@ -6,6 +6,8 @@ public class Ruta {
     private String Titulo;
     private String Descripcion;
     private String Icono;
+    private String Informacion;
+    private String ImagenLugar;
 
     public Ruta(){
         Titulo = "";
@@ -13,13 +15,33 @@ public class Ruta {
         Lng = 0;
         Descripcion = "";
         Icono = "";
+        Informacion = "";
+        ImagenLugar = "";
     }
-    public Ruta(double lat, double lng, String titulo,String descripcion,String icono) {
+    public Ruta(double lat, double lng, String titulo,String descripcion,String icono,String informacion, String imagenLugar) {
         Lat = lat;
         Lng = lng;
         Titulo = titulo;
         Descripcion = descripcion;
         Icono = icono;
+        Informacion = informacion;
+        ImagenLugar = imagenLugar;
+    }
+
+    public String getInformacion() {
+        return Informacion;
+    }
+
+    public void setInformacion(String informacion) {
+        Informacion = informacion;
+    }
+
+    public String getImagenLugar() {
+        return ImagenLugar;
+    }
+
+    public void setImagenLugar(String imagenLugar) {
+        ImagenLugar = imagenLugar;
     }
 
     public String getIcono() {

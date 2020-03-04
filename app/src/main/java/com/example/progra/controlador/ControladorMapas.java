@@ -50,6 +50,8 @@ public class ControladorMapas {
                     ruta.setTitulo(arrayArchivo[2]);
                     ruta.setDescripcion(arrayArchivo[3]);
                     ruta.setIcono(arrayArchivo[4]);
+                    ruta.setInformacion(arrayArchivo[5]);
+                    ruta.setImagenLugar(arrayArchivo[6]);
                     listaRuta.add(ruta);
                 }
                 cadena = lector.readLine();

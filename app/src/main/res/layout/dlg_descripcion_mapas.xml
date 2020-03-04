@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/azul">
+
+    <TextView
+        android:id="@+id/lblDlgTituloMapa"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#FFF"
+        app:layout_constraintBottom_toTopOf="@+id/imgDlgMapa"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgDlgMapa"
+        android:layout_width="320dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginBottom="37dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/lblDlgDescripcionMapa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblDlgTituloMapa" />
+
+    <TextView
+        android:id="@+id/lblDlgDescripcionMapa"
+        android:layout_width="273dp"
+        android:layout_height="178dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginLeft="69dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginRight="69dp"
+        android:textColor="#D3D3D3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgDlgMapa" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
