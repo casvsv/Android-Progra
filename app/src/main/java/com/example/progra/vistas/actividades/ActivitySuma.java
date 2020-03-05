@@ -1,17 +1,19 @@
 package com.example.progra.vistas.actividades;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.progra.R;
 
 public class ActivitySuma extends AppCompatActivity implements View.OnClickListener {
 
-    EditText numero1, numero2, resultado;
+    EditText numero1, numero2;
+    TextView resultado;
     Button boton;
 
     @Override
@@ -34,5 +36,7 @@ public class ActivitySuma extends AppCompatActivity implements View.OnClickListe
         int valor2 = Integer.parseInt(numero2.getText().toString());
         int suma = valor1 + valor2;
         resultado.setText(suma + "");
+        numero1.setText("");
+        numero2.setText("");
     }
 }

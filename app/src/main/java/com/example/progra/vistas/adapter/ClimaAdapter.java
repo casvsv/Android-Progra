@@ -31,32 +31,32 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolderCl
     //se cargar los datos de la vista
     @Override
     public void onBindViewHolder(ViewHolderClima viewHolderClima, int pos) {
-        viewHolderClima.lon.setText(""+lista.get(pos).getLon());
-        viewHolderClima.lat.setText(""+lista.get(pos).getLat());
-        viewHolderClima.weatherid.setText(""+lista.get(pos).getId_clima());
-        viewHolderClima.weathermain.setText(""+lista.get(pos).getMain());
-        viewHolderClima.weatherdescription.setText(""+lista.get(pos).getDescription());
-        viewHolderClima.weathericon.setText(""+lista.get(pos).getIcon());
-        viewHolderClima.base.setText(""+lista.get(pos).getBase());
-        viewHolderClima.maintemp.setText(""+lista.get(pos).getTemp());
-        viewHolderClima.mainpressure.setText(""+lista.get(pos).getPressure());
-        viewHolderClima.mainhumidity.setText(""+lista.get(pos).getHumidity());
-        viewHolderClima.maintempmin.setText(""+lista.get(pos).getTemp_min());
-        viewHolderClima.maintempmax.setText(""+lista.get(pos).getTemp_max());
-        viewHolderClima.visibility.setText(""+lista.get(pos).getVisibility());
-        viewHolderClima.windspeed.setText(""+lista.get(pos).getSpeed());
-        viewHolderClima.winddeg.setText(""+lista.get(pos).getDeg());
-        viewHolderClima.cloudsall.setText(""+lista.get(pos).getAll());
-        viewHolderClima.dt.setText(""+lista.get(pos).getDt());
-        viewHolderClima.systype.setText(""+lista.get(pos).getType());
-        viewHolderClima.sysid.setText(""+lista.get(pos).getId_sys());
-        viewHolderClima.sysmessage.setText(""+lista.get(pos).getMessage());
-        viewHolderClima.syscountry.setText(""+lista.get(pos).getCountry());
-        viewHolderClima.syssunrise.setText(""+lista.get(pos).getSunrise());
-        viewHolderClima.syssunset.setText(""+lista.get(pos).getSunset());
-        viewHolderClima.id.setText(""+lista.get(pos).getId());
-        viewHolderClima.name.setText(""+lista.get(pos).getName());
-        viewHolderClima.cod.setText(""+lista.get(pos).getCod());
+        viewHolderClima.lon.setText(String.valueOf(lista.get(pos).getLon()));
+        viewHolderClima.lat.setText(String.valueOf(lista.get(pos).getLat()));
+        viewHolderClima.weatherid.setText(String.valueOf(lista.get(pos).getId_clima()));
+        viewHolderClima.weathermain.setText(String.valueOf(lista.get(pos).getMain()));
+        viewHolderClima.weatherdescription.setText(String.valueOf(lista.get(pos).getDescription()));
+        viewHolderClima.weathericon.setText(String.valueOf(lista.get(pos).getIcon()));
+        viewHolderClima.base.setText(String.valueOf(lista.get(pos).getBase()));
+        viewHolderClima.maintemp.setText(String.valueOf(lista.get(pos).getTemp()));
+        viewHolderClima.mainpressure.setText(String.valueOf(lista.get(pos).getPressure()));
+        viewHolderClima.mainhumidity.setText(String.valueOf(lista.get(pos).getHumidity()));
+        viewHolderClima.maintempmin.setText(String.valueOf(lista.get(pos).getTemp_min()));
+        viewHolderClima.maintempmax.setText(String.valueOf(lista.get(pos).getTemp_max()));
+        viewHolderClima.visibility.setText(String.valueOf(lista.get(pos).getVisibility()));
+        viewHolderClima.windspeed.setText(String.valueOf(lista.get(pos).getSpeed()));
+        viewHolderClima.winddeg.setText(String.valueOf(lista.get(pos).getDeg()));
+        viewHolderClima.cloudsall.setText(String.valueOf(lista.get(pos).getAll()));
+        viewHolderClima.dt.setText(String.valueOf(lista.get(pos).getDt()));
+        viewHolderClima.systype.setText(String.valueOf(lista.get(pos).getType()));
+        viewHolderClima.sysid.setText(String.valueOf(lista.get(pos).getId_sys()));
+        viewHolderClima.sysmessage.setText(String.valueOf(lista.get(pos).getMessage()));
+        viewHolderClima.syscountry.setText(String.valueOf(lista.get(pos).getCountry()));
+        viewHolderClima.syssunrise.setText(String.valueOf(lista.get(pos).getSunrise()));
+        viewHolderClima.syssunset.setText(String.valueOf(lista.get(pos).getSunset()));
+        viewHolderClima.id.setText(String.valueOf(lista.get(pos).getId()));
+        viewHolderClima.name.setText(String.valueOf(lista.get(pos).getName()));
+        viewHolderClima.cod.setText(String.valueOf(lista.get(pos).getCod()));
     }
 
     //Es para saber cuantos items va a tener la lista

@@ -3,15 +3,15 @@ package com.example.progra.vistas.fragmentos;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
 import com.example.progra.R;
 
 
@@ -32,6 +32,7 @@ public class FrgUno extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    int n1,n2,suma;
 
     private OnFragmentInteractionListener mListener;
 
@@ -72,15 +73,21 @@ public class FrgUno extends Fragment {
         // Inflate the layout for this fragment
        // return inflater.inflate(R.layout.fragment_frg_uno, container, false);
         View vista = inflater.inflate(R.layout.fragment_frg_uno, container, false);
-        final EditText n1 = vista.findViewById(R.id.txtN1Frg1);
-        final EditText n2 = vista.findViewById(R.id.txtN2Frg1);
+        final EditText valor1 = vista.findViewById(R.id.txtN1Frg1);
+        final EditText valor2 = vista.findViewById(R.id.txtN2Frg1);
         Button boton = vista.findViewById(R.id.btnSumarFrg1);
         boton.setOnClickListener(new View.OnClickListener(){
 
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), n1.getText(), Toast.LENGTH_SHORT).show();
+                int n1=Integer.parseInt(valor1.getText().toString());
+                int n2=Integer.parseInt(valor2.getText().toString());
+                int suma=n1+n2;
+                Toast.makeText(getContext(), suma+"", Toast.LENGTH_LONG).show();
+
+                valor1.setText("");
+                valor2.setText("");
             }
         });
         return vista;

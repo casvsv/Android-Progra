@@ -19,6 +19,5 @@
     <ImageView
         android:id="@+id/imgDlgDetalles"
         android:layout_width="match_parent"
-        android:layout_height="193dp"
-        app:srcCompat="@drawable/aguila" />
+        android:layout_height="193dp" />
 </LinearLayout>

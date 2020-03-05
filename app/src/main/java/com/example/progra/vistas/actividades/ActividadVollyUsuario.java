@@ -1,7 +1,6 @@
 package com.example.progra.vistas.actividades;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,7 +70,7 @@ public class ActividadVollyUsuario extends AppCompatActivity implements View.OnC
                     sw.Insertar(parametros);
                     limpiar();
                 } catch (Exception e){
-                    Log.e("Error:",e.getMessage());
+                    Toast.makeText(this,"Error"+e.getMessage(),Toast.LENGTH_SHORT);
                 }
                 break;
 
@@ -94,7 +93,7 @@ public class ActividadVollyUsuario extends AppCompatActivity implements View.OnC
                     });
                     limpiar();
                 } catch (Exception e){
-                    Log.e("Error:",e.getMessage());
+                    Toast.makeText(this,"Error"+e.getMessage(),Toast.LENGTH_SHORT);
                 }
                 break;
 
@@ -107,7 +106,7 @@ public class ActividadVollyUsuario extends AppCompatActivity implements View.OnC
                     sw.Modificar(parametros);
                     limpiar();
                 } catch (Exception e){
-                    Log.e("Error:",e.getMessage());
+                    Toast.makeText(this,"Error"+e.getMessage(),Toast.LENGTH_SHORT);
                 }
                 break;
 
@@ -117,7 +116,7 @@ public class ActividadVollyUsuario extends AppCompatActivity implements View.OnC
                     Toast.makeText(this, "Se ha eliminado correctamente", Toast.LENGTH_SHORT).show();
                     limpiar();
                 } catch (Exception e){
-                    Log.e("Error:",e.getMessage());
+                    Toast.makeText(this,"Error"+e.getMessage(),Toast.LENGTH_SHORT);
                 }
                 break;
 
@@ -140,7 +139,7 @@ public class ActividadVollyUsuario extends AppCompatActivity implements View.OnC
                     });
                     limpiar();
                 } catch (Exception e){
-                    Log.e("Error:",e.getMessage());
+                    Toast.makeText(this,"Error"+e.getMessage(),Toast.LENGTH_SHORT);
                 }
                 break;
         }

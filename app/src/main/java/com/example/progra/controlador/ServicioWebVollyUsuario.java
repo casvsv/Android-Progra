@@ -18,7 +18,7 @@ public class ServicioWebVollyUsuario {
     Context context;
 
     //Se define la URL del servicio
-    String host="http://192.168.1.8/Salazar";
+    String host="http://192.168.1.10/Salazar";
     String getAll="/wsJSONConsultarLista.php";
     String insert="/wsJSONRegistroMovil.php";
     String update="/wsJSONUpdateMovil.php";

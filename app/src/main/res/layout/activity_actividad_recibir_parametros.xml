@@ -10,14 +10,16 @@
     <TextView
         android:id="@+id/lblNombreRecibirParametro"
         android:layout_width="match_parent"
-        android:layout_height="29dp"
-        android:text="El nombre es: " />
+        android:layout_height="46dp"
+        android:text="El nombre es: "
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/lblApellidoRecibirParametro"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:text="El apellido es: " />
+        android:layout_height="63dp"
+        android:text="El apellido es: "
+        android:textSize="24sp" />
 
 
 </LinearLayout>

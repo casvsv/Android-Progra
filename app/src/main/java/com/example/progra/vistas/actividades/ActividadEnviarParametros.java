@@ -1,12 +1,12 @@
 package com.example.progra.vistas.actividades;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.progra.R;
 
@@ -32,8 +32,8 @@ public class ActividadEnviarParametros extends AppCompatActivity implements View
     public void onClick(View view) {
         Intent intent = new Intent(ActividadEnviarParametros.this, ActividadRecibirParametros.class);
         Bundle bundle = new Bundle();
-        bundle.putString("Nombre", cajanombres.getText().toString());
-        bundle.putString("Apellido", cajaapellidos.getText()+"");
+        bundle.putString("Nombre", "Nombres: "+cajanombres.getText().toString());
+        bundle.putString("Apellido", "Apellidos: "+cajaapellidos.getText()+"");
         intent.putExtras(bundle);
         startActivity(intent);
     }

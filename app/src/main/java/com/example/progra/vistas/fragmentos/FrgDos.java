@@ -3,12 +3,15 @@ package com.example.progra.vistas.fragmentos;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
 import com.example.progra.R;
 
 /**
@@ -65,8 +68,24 @@ public class FrgDos extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frg_dos, container, false);
+        View vista = inflater.inflate(R.layout.fragment_frg_dos, container, false);
+        final EditText valor1 = vista.findViewById(R.id.txtN1Frg2);
+        final EditText valor2 = vista.findViewById(R.id.txtN2Frg2);
+        Button boton = vista.findViewById(R.id.btnRestarFrg2);
+        boton.setOnClickListener(new View.OnClickListener(){
+
+
+            @Override
+            public void onClick(View v) {
+                int n1=Integer.parseInt(valor1.getText().toString());
+                int n2=Integer.parseInt(valor2.getText().toString());
+                int resta=n1-n2;
+                Toast.makeText(getContext(), resta+"", Toast.LENGTH_LONG).show();
+                valor1.setText("");
+                valor2.setText("");
+            }
+        });
+        return vista;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

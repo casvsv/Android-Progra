@@ -15,39 +15,49 @@
 
         <EditText
             android:id="@+id/txtNum1"
-            android:layout_width="wrap_content"
+            android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text=""
-            android:hint="Ingrese un numero a sumar"/>
+            android:hint="Ingrese Valor 1"
+            android:inputType="number"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="34dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="+"
+            android:gravity="center"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/txtNum2"
-            android:layout_width="wrap_content"
+            android:layout_width="171dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text=""
-            android:hint="Ingrese otro numero para sumar"/>
+            android:hint="Ingrese Valor 2"
+            android:inputType="number"
+            android:text="" />
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/txtResultado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:hint="Suma"/>
-
     <Button
         android:id="@+id/btnBoton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
         android:text="Sumar" />
+
+    <TextView
+        android:id="@+id/txtResultado"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:textSize="30sp"
+        android:gravity="center"/>
 
 </LinearLayout>

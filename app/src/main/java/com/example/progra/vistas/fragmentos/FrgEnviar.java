@@ -3,15 +3,15 @@ package com.example.progra.vistas.fragmentos;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.progra.R;
 import com.example.progra.modelo.Comunicador;
 
@@ -93,7 +93,7 @@ public class FrgEnviar extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
                 click++;
-                comunicador.responder("Numero de click: "+click);
+                comunicador.responder(click+"");
     }
 
     @Override

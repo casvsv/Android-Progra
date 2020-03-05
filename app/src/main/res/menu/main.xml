@@ -114,7 +114,7 @@
             </item>
             <item
                 android:id="@+id/opcionRecyclerArtistas"
-                android:title="Recycle Artistas">
+                android:title="Recycler Artistas">
             </item>
         </menu>
     </item>

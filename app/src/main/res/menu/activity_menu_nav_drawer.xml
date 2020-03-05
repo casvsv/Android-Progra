@@ -7,31 +7,31 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Inicio" />
+            android:title="Imagen Principal" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Galeria" />
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Imagen 1" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Diapositivas" />
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Imagen 2" />
         <item
             android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Herramientas" />
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Imagen 3" />
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Compartir" />
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Imagen 4" /> />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Enviar" />
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Imagen 5" /> />
         </menu>
     </item>
 

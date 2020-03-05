@@ -1,12 +1,13 @@
 package com.example.progra.vistas.actividades;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.progra.R;
 
 public class ActivityLogin extends AppCompatActivity implements View.OnClickListener{
@@ -29,6 +30,6 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(ActivityLogin.this,"Usuario" + cajaUsuario.getText() + "Clave" + cajaPassword.getText(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(ActivityLogin.this,"Usuario: " + cajaUsuario.getText() + "\nClave: " + cajaPassword.getText(),Toast.LENGTH_SHORT).show();
     }
 }

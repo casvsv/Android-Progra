@@ -1,7 +1,6 @@
 package com.example.progra.vistas.actividades;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +31,7 @@ public class ActividadHiloUsuario extends AppCompatActivity implements View.OnCl
 
 
     //Se define la URL del servicio
-    String host="http://192.168.1.8/Salazar";
+    String host="http://192.168.1.10/Salazar";
     String getAll="/wsJSONConsultarLista.php";
     String insert="/wsJSONRegistro.php";
     String update="/wsJSONUpdateMovil.php";
@@ -76,7 +75,7 @@ public class ActividadHiloUsuario extends AppCompatActivity implements View.OnCl
                     Toast.makeText(this,"Se han listado correctamente",Toast.LENGTH_SHORT).show();
                     limpiar();
                 } catch (Exception e){
-                    Log.e("Error:",e.getMessage());
+                    Toast.makeText(this,"Error"+e.getMessage(),Toast.LENGTH_SHORT);
                 }
                 break;
 
@@ -84,7 +83,7 @@ public class ActividadHiloUsuario extends AppCompatActivity implements View.OnCl
                 try {
                     sw.execute(host.concat(insert), "2", cajaDocumento.getText().toString(), cajaNombre.getText().toString(),cajaProfesion.getText().toString()).get();
                 } catch (Exception e){
-                    Log.e("Error:",e.getMessage());
+                    Toast.makeText(this,"Error"+e.getMessage(),Toast.LENGTH_SHORT);
                 }
                 Toast.makeText(this,"Se ha guardado correctamente",Toast.LENGTH_SHORT).show();
                 limpiar();
@@ -94,7 +93,7 @@ public class ActividadHiloUsuario extends AppCompatActivity implements View.OnCl
                 try {
                     sw.execute(host.concat(update), "3", cajaDocumento.getText().toString(), cajaNombre.getText().toString(),cajaProfesion.getText().toString()).get();
                 } catch (Exception e){
-                    Log.e("Error:",e.getMessage());
+                    Toast.makeText(this,"Error"+e.getMessage(),Toast.LENGTH_SHORT);
                 }
                 Toast.makeText(this,"Se ha modificado correctamente",Toast.LENGTH_SHORT).show();
                 limpiar();
@@ -112,7 +111,7 @@ public class ActividadHiloUsuario extends AppCompatActivity implements View.OnCl
                     JsonParse(cadena);
                     limpiar();
                 } catch (Exception e){
-                    Log.e("Error:",e.getMessage());
+                    Toast.makeText(this,"Error"+e.getMessage(),Toast.LENGTH_SHORT);
                 }
                 break;
         }

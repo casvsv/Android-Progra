@@ -1,6 +1,7 @@
 package com.example.progra.vistas.actividades;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,8 +13,6 @@ import com.android.volley.RequestQueue;
 import com.example.progra.R;
 import com.example.progra.controlador.ServicioWebClima;
 import com.example.progra.modelo.Clima;
-
-import java.util.concurrent.ExecutionException;
 
 public class ActividadSWClima extends AppCompatActivity implements View.OnClickListener{
     RequestQueue mQueue;
@@ -66,25 +65,26 @@ public class ActividadSWClima extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
             case R.id.btnCargarDatosSWClima:
                 try {
-                    consulta=sw.execute().get();
-                    climas=sw.parsearJson(consulta);
-                    cargarDatos(climas);
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    try {
+                        consulta=sw.execute().get();
+                    }catch (Exception e){
+                        Log.e("Error",e.getMessage());
+                    }
+                    try {
+                        climas=sw.parsearJson(consulta);
+                        cargarDatos(climas);
+                    }catch (Exception e){
+                        Log.e("Error",e.getMessage());
+                    }
+                } catch (Exception e){
+                    Log.e("Error",e.getMessage());
                 }
-
                 Toast.makeText(this,"Se han cargado correctamente",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
 
-
-
-
-
-    private void cargarDatos(Clima clima){
+    private void cargarDatos(Clima clima) {
         dt.setText(clima.getDt());
         lon.setText(clima.getLon());
         lat.setText(clima.getLat());

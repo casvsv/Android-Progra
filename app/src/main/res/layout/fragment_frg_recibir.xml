@@ -3,19 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
     tools:context="com.example.progra.vistas.fragmentos.FrgRecibir">
 
     <!-- TODO: Update blank fragment layout -->
 
-
-
+    <TextView
+        android:id="@+id/txtN"
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Número de clicks:"
+        android:textColor="#FFF"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/contaClicks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="709dp"
         android:layout_weight="1"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="0"
+        android:textColor="#FFF"
+        android:textSize="80dp" />
 </LinearLayout>

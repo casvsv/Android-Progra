@@ -3,12 +3,6 @@ package com.example.progra.vistas.fragmentos;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.progra.R;
 import com.example.progra.modelo.Artista;
@@ -140,7 +138,7 @@ public class FrgSD extends Fragment implements View.OnClickListener{
                 FileWriter fileWriter = null;
                 try {
                     File file = Environment.getExternalStorageDirectory(); // ruta del SD
-                    File ruta = new File(file.getAbsoluteFile(), "archivoSD2.txt");
+                    File ruta = new File(file.getAbsoluteFile(), "archivoSD.txt");
                     fileWriter = new FileWriter(ruta.getAbsoluteFile(), true);
                     bufferedWriter = new BufferedWriter(fileWriter);
                     bufferedWriter.write(cajaNombres.getText().toString()+","+cajaApellidos.getText().toString()+","+cajaNombreArtistico.getText().toString()+";");
@@ -154,7 +152,7 @@ public class FrgSD extends Fragment implements View.OnClickListener{
             case R.id.btnListarSD:
                 try {
                     File ruta = Environment.getExternalStorageDirectory(); // ruta del SD
-                    File file = new File(ruta.getAbsoluteFile(), "archivoSD2.txt");
+                    File file = new File(ruta.getAbsoluteFile(), "archivoSD.txt");
                     listaArtistas = new ArrayList<Artista>();
                     BufferedReader lector = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
                     String lineas = lector.readLine();

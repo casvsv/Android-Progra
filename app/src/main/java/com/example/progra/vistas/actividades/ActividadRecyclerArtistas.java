@@ -1,15 +1,16 @@
 package com.example.progra.vistas.actividades;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.progra.R;
 import com.example.progra.modelo.Artista;
 import com.example.progra.vistas.adapter.ArtistaAdapter;
@@ -38,28 +39,35 @@ public class ActividadRecyclerArtistas extends AppCompatActivity  {
     }
     private void cargarRecycler(){
         Artista artista1 = new Artista();
-        artista1.setNombres("Luis");
-        artista1.setApellidos("Miguel");
-        artista1.setNombreArtistico("luismiguel");
-        artista1.setImgfoto(R.drawable.gato);
+        artista1.setNombres("John");
+        artista1.setApellidos("Lennon");
+        artista1.setNombreArtistico("John Lennon");
+        artista1.setImgfoto(R.drawable.john);
 
         Artista artista2 = new Artista();
-        artista2.setNombres("Don");
-        artista2.setApellidos("Medardo");
-        artista2.setNombreArtistico("donmedardo");
-        artista2.setImgfoto(R.drawable.perro);
+        artista2.setNombres("Paul");
+        artista2.setApellidos("McCartney");
+        artista2.setNombreArtistico("Paul McCartney");
+        artista2.setImgfoto(R.drawable.paul);
 
         Artista artista3 = new Artista();
-        artista3.setNombres("Enrique");
-        artista3.setApellidos("Bumbury");
-        artista3.setNombreArtistico("enriquebumbury");
-        artista3.setImgfoto(R.drawable.aguila);
+        artista3.setNombres("George");
+        artista3.setApellidos("Harrison");
+        artista3.setNombreArtistico("George Harrison");
+        artista3.setImgfoto(R.drawable.george);
+
+        Artista artista4 = new Artista();
+        artista4.setNombres("Ringo");
+        artista4.setApellidos("Starr");
+        artista4.setNombreArtistico("Ringo Starr");
+        artista4.setImgfoto(R.drawable.ringo);
 
 
         listaArtistas = new ArrayList<Artista>();
         listaArtistas.add(artista1);
         listaArtistas.add(artista2);
         listaArtistas.add(artista3);
+        listaArtistas.add(artista4);
 
         adapter = new ArtistaAdapter(listaArtistas);
         recyclerViewArtistas.setLayoutManager(new LinearLayoutManager(this));
